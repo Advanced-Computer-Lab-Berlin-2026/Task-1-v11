@@ -177,3 +177,279 @@ Do not edit the Product files. Pull requests that change them will be sent back.
 You're expected to use AI tools while building this. That's fine and expected.
 
 But you remain responsible for all of the code you submit. You must be able to explain, for **any line in your controller**, why it's there and what happens if you delete it. We will ask.
+
+---
+
+## API Examples
+
+**Example 1:**
+
+Input:
+
+`POST http://localhost:3000/api/events`
+
+````
+{
+	"title": "Soccer Match",
+    "description": "GUC Soccer Match",
+    "date": "2026-09-28T12:00:00.0002",
+    "location": "GUC",
+    "capacity": 100,
+    "category": "sports",
+    "isFree": true,
+    "price": 10
+
+}
+````
+
+Output:
+
+`201 Created`
+
+```
+{
+    "title": "Soccer Match",
+    "description": "GUC Soccer Match",
+    "date": "2026-09-28T10:00:00.000Z",
+    "location": "GUC",
+    "capacity": 100,
+    "category": "sports",
+    "isFree": true,
+    "price": 10,
+    "_id": "6ac6529ab5b72b762d5824cf",
+    "createdAt": "2026-10-07T14:09:31.018Z",
+    "updatedAt": "2026-10-07T14:09:31.018Z",
+    "__v": 0
+}
+````
+
+**Example 2:**
+
+Input:
+
+`POST http://localhost:3000/api/events`
+
+```
+{
+	"title": "Movie Night",
+    "description": "Platform",
+    "date": "2026-10-18T17:30:00.0002",
+    "location": "GUC",
+    "capacity": 100,
+    "category": "social",
+    "isFree": true,
+    "price": 0
+
+}
+```
+
+Output:
+
+`201 Created`
+
+```
+{
+    "title": "Movie Night",
+    "description": "Platform",
+    "date": "2026-10-18T15:30:00.000Z",
+    "location": "GUC",
+    "capacity": 100,
+    "category": "social",
+    "isFree": true,
+    "price": 0,
+    "_id": "6ac654b5b5b72b762d5824d0",
+    "createdAt": "2026-10-07T14:18:29.544Z",
+    "updatedAt": "2026-10-07T14:18:29.544Z",
+    "__v": 0
+}
+```
+
+**Example 3:**
+
+Input:
+
+`GET http://localhost:3000/api/events/`
+
+Output:
+`200 OK`
+```
+[
+    {
+        "_id": "6ac6529ab5b72b762d5824cf",
+        "title": "Soccer Match",
+        "description": "GUC Soccer Match",
+        "date": "2026-09-28T10:00:00.000Z",
+        "location": "GUC",
+        "capacity": 100,
+        "category": "sports",
+        "isFree": true,
+        "price": 10,
+        "createdAt": "2026-10-07T14:09:31.018Z",
+        "updatedAt": "2026-10-07T14:09:31.018Z",
+        "__v": 0
+    },
+    {
+        "_id": "6ac654b5b5b72b762d5824d0",
+        "title": "Movie Night",
+        "description": "Platform",
+        "date": "2026-10-18T15:30:00.000Z",
+        "location": "GUC",
+        "capacity": 100,
+        "category": "social",
+        "isFree": true,
+        "price": 0,
+        "createdAt": "2026-10-07T14:18:29.544Z",
+        "updatedAt": "2026-10-07T14:18:29.544Z",
+        "__v": 0
+    }
+]
+```
+
+**Example 4:**
+
+Input:
+
+`GET http://localhost:3000/api/events/upcoming`
+
+Output:
+`200 OK`
+```
+[
+    {
+        "_id": "6ac654b5b5b72b762d5824d0",
+        "title": "Movie Night",
+        "description": "Platform",
+        "date": "2026-10-18T15:30:00.000Z",
+        "location": "GUC",
+        "capacity": 100,
+        "category": "social",
+        "isFree": true,
+        "price": 0,
+        "createdAt": "2026-10-07T14:18:29.544Z",
+        "updatedAt": "2026-10-07T14:18:29.544Z",
+        "__v": 0
+    }
+]
+```
+
+**Example 5:**
+
+Input:
+
+`GET http://localhost:3000/api/events/6ac654b5b5b72b762d5824d0`
+
+Output:
+`200 OK`
+```
+[
+    {
+        "_id": "6ac654b5b5b72b762d5824d0",
+        "title": "Movie Night",
+        "description": "Platform",
+        "date": "2026-10-18T15:30:00.000Z",
+        "location": "GUC",
+        "capacity": 100,
+        "category": "social",
+        "isFree": true,
+        "price": 0,
+        "createdAt": "2026-10-07T14:18:29.544Z",
+        "updatedAt": "2026-10-07T14:18:29.544Z",
+        "__v": 0
+    }
+]
+```
+
+**Example 6:**
+
+Input:
+
+`POST http://localhost:3000/api/events/`
+
+```
+{
+	"title": "Soccer Match",
+    "description": "This is a duplicate designed to fail",
+    "date": "2026-09-28T12:00:00.0002",
+    "location": "GUC",
+    "capacity": 120,
+    "category": "sports",
+    "isFree": true,
+    "price": 0
+
+}
+```
+
+Output:
+
+`409 Conflict`
+
+```
+{
+	"title": "Soccer Match",
+    "description": "This is a duplicate designed to fail",
+    "date": "2026-09-28T12:00:00.0002",
+    "location": "GUC",
+    "capacity": 120,
+    "category": "sports",
+    "isFree": true,
+    "price": 0
+
+}
+```
+
+**Example 7:**
+
+Input:
+
+`PUT http://localhost:3000/api/events/6ac6529ab5b72b762d5824cf`
+```
+{
+	"title": "The Big Soccer Match",
+    "capacity": 200
+}
+```
+
+Output:
+`200 OK`
+```
+{
+    "_id": "6ac6529ab5b72b762d5824cf",
+    "title": "The Big Soccer Match",
+    "description": "GUC Soccer Match",
+    "date": "2026-09-28T10:00:00.000Z",
+    "location": "GUC",
+    "capacity": 200,
+    "category": "sports",
+    "isFree": true,
+    "price": 10,
+    "createdAt": "2026-10-07T14:09:31.018Z",
+    "updatedAt": "2026-10-07T15:15:09.195Z",
+    "__v": 0
+}
+```
+
+**Example 8:**
+
+Input:
+`GET http://localhost:3000/api/events?category=sports&isFree=true`
+
+Output:
+`200 OK`
+```
+[
+    {
+        "_id": "6ac6529ab5b72b762d5824cf",
+        "title": "The Big Soccer Match",
+        "description": "GUC Soccer Match",
+        "date": "2026-09-28T10:00:00.000Z",
+        "location": "GUC",
+        "capacity": 200,
+        "category": "sports",
+        "isFree": true,
+        "price": 10,
+        "createdAt": "2026-10-07T14:09:31.018Z",
+        "updatedAt": "2026-10-07T15:15:09.195Z",
+        "__v": 0
+    }
+]
+```
