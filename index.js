@@ -101,7 +101,7 @@ app.get('/', (req, res) => {
  
 
 
-mongoose.connect("mongodb+srv://mahermohammed1097_db_user:lNL4kf5Fl0wOFClo@cluster0.bk5dhmp.mongodb.net/?appName=Cluster0")
+mongoose.connect("your connection string")
 .then(() => {
   console.log('Connected to MongoDB')
 })
