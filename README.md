@@ -177,3 +177,165 @@ Do not edit the Product files. Pull requests that change them will be sent back.
 You're expected to use AI tools while building this. That's fine and expected.
 
 But you remain responsible for all of the code you submit. You must be able to explain, for **any line in your controller**, why it's there and what happens if you delete it. We will ask.
+
+---
+
+## API Examples
+
+1. getEvents
+
+Input: `GET http://localhost:3000/api/events/`
+
+Output: `200 OK`
+```
+[
+    {
+        "_id": "6ac62ff0033f14f9e7176ada",
+        "title": "SBR 4",
+        "description": "Steel Ball Run",
+        "date": "2026-10-09T10:00:00.000Z",
+        "location": "GIU Theater",
+        "capacity": 50,
+        "category": "other",
+        "isFree": true,
+        "price": 0,
+        "createdAt": "2026-10-07T11:41:36.249Z",
+        "updatedAt": "2026-10-07T11:41:36.249Z",
+        "__v": 0
+    },
+    {
+        "_id": "6ac6329504845957aa7936cb",
+        "title": "SBR 3",
+        "description": "Steel Ball Run",
+        "date": "2026-10-02T10:00:00.000Z",
+        "location": "GIU Theater",
+        "capacity": 50,
+        "category": "other",
+        "isFree": true,
+        "price": 0,
+        "createdAt": "2026-10-07T11:52:53.708Z",
+        "updatedAt": "2026-10-07T11:52:53.708Z",
+        "__v": 0
+    }
+]
+```
+
+2. getUpcomingEvents
+   
+Input: `GET http://localhost:3000/api/events/upcoming`
+
+Output: `200 OK`
+```
+[
+    {
+        "_id": "6ac62ff0033f14f9e7176ada",
+        "title": "SBR 4",
+        "description": "Steel Ball Run",
+        "date": "2026-10-09T10:00:00.000Z",
+        "location": "GIU Theater",
+        "capacity": 50,
+        "category": "other",
+        "isFree": true,
+        "price": 0,
+        "createdAt": "2026-10-07T11:41:36.249Z",
+        "updatedAt": "2026-10-07T11:41:36.249Z",
+        "__v": 0
+    }
+]
+```
+
+3. getEventById
+   
+Input: `GET http://localhost:3000/api/events/6ac62ff0033f14f9e7176ada`
+
+Output: `200 OK`
+
+```
+{
+    "_id": "6ac62ff0033f14f9e7176ada",
+    "title": "SBR 4",
+    "description": "Steel Ball Run",
+    "date": "2026-10-09T10:00:00.000Z",
+    "location": "GIU Theater",
+    "capacity": 50,
+    "category": "other",
+    "isFree": true,
+    "price": 0,
+    "createdAt": "2026-10-07T11:41:36.249Z",
+    "updatedAt": "2026-10-07T11:41:36.249Z",
+    "__v": 0
+}
+```
+
+4. createEvent
+   
+Input: `POST http://localhost:3000/api/events`
+```
+{
+        "title": "SBR 5",
+        "description": "Steel Ball Run",
+        "date": "2026-10-16T10:00:00.000Z",
+        "location": "GIU Theater",
+        "capacity": 50,
+        "category": "other",
+        "isFree": true,
+        "price": 0
+    }
+```
+Output: `201 Created`
+```
+{
+    "title": "SBR 5",
+    "description": "Steel Ball Run",
+    "date": "2026-10-16T10:00:00.000Z",
+    "location": "GIU Theater",
+    "capacity": 50,
+    "category": "other",
+    "isFree": true,
+    "price": 0,
+    "_id": "6ac6349a04845957aa7936cc",
+    "createdAt": "2026-10-07T12:01:30.417Z",
+    "updatedAt": "2026-10-07T12:01:30.417Z",
+    "__v": 0
+}
+```
+
+5. updateEvent
+   
+Input: `PUT http://localhost:3000/api/events/6ac6349a04845957aa7936cc`
+```
+{
+    "title": "SBR 6",
+    "date": "2026-10-23T10:00:00.000Z"
+}
+```
+Output: `200 OK`
+```
+{
+    "_id": "6ac6349a04845957aa7936cc",
+    "title": "SBR 6",
+    "description": "Steel Ball Run",
+    "date": "2026-10-23T10:00:00.000Z",
+    "location": "GIU Theater",
+    "capacity": 50,
+    "category": "other",
+    "isFree": true,
+    "price": 0,
+    "createdAt": "2026-10-07T12:01:30.417Z",
+    "updatedAt": "2026-10-07T12:05:54.014Z",
+    "__v": 0
+}
+```
+
+6. deleteEvent
+
+Input: `DELETE http://localhost:3000/api/events/6ac6349a04845957aa7936cc`
+```
+http://localhost:3000/api/events/6ac6349a04845957aa7936cc
+```
+Output: `200 OK`
+```
+{
+    "message": "Event deleted successfully"
+}
+```
