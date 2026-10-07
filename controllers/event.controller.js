@@ -52,20 +52,20 @@ const createEvent = async (req, res) => {
         res.status(201).json(event);
     }
     catch (error) {
-        if(error.code === '11000'){
-            res.status(409).json({ error: 'Duplicate event' });
+        if(error.code === 11000){
+            return res.status(409).json({ error: 'Duplicate event' });
         }
         if(error.name === 'ValidationError'){
-            res.status(400).json({ error: error.message });
+            return res.status(400).json({ error: error.message });
         }
-        res.status(500).json({ error: 'Internal server error' + error.message });
+        res.status(500).json({ error: 'Internal server error ' + error.message });
     }
 }
 
 const updateEvent = async (req, res) => {
     try {
         const {id} = req.params;
-        const event = await Event.findByIdAndUpdate(id, req.body)
+        const event = await Event.findByIdAndUpdate(id, req.body, {new:true})
         if (!event) {
             return res.status(404).json({ error: 'Event not found' });
         }
@@ -74,10 +74,10 @@ const updateEvent = async (req, res) => {
     }
     catch (error) {
         if(error.name === 'ValidationError'){
-            res.status(400).json({ error: error.message });
+            return res.status(400).json({ error: error.message });
         }
-        if(error.code === '11000'){
-            res.status(409).json({ error: 'Duplicate event' });
+        if(error.code === 11000){
+            return res.status(409).json({ error: 'Duplicate event' });
         }
         res.status(500).json({ error: 'Internal server error' });
     }
