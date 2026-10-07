@@ -177,3 +177,158 @@ Do not edit the Product files. Pull requests that change them will be sent back.
 You're expected to use AI tools while building this. That's fine and expected.
 
 But you remain responsible for all of the code you submit. You must be able to explain, for **any line in your controller**, why it's there and what happens if you delete it. We will ask.
+
+/*API Examples
+
+
+
+### 1. Create a New Event
+
+- **Endpoint:** POST /api/events
+- **Request Body:**
+{
+  "title": "Campus Hackathon 2026",
+  "description": "Annual student hackathon",
+  "date": "2026-11-20T10:00:00.000Z",
+  "location": "Engineering Lab 3",
+  "capacity": 50,
+  "category": "academic",
+  "isFree": true,
+  "price": 0
+}
+- **Response (201 Created):**
+{
+  "_id": "6ac63f9fabc71c95aa228c0d",
+  "title": "Campus Hackathon 2026",
+  "description": "Annual student hackathon",
+  "date": "2026-11-20T10:00:00.000Z",
+  "location": "Engineering Lab 3",
+  "capacity": 50,
+  "category": "academic",
+  "isFree": true,
+  "price": 0,
+  "createdAt": "2026-10-07T12:48:31.422Z",
+  "updatedAt": "2026-10-07T12:48:31.422Z",
+  "__v": 0
+}
+
+---
+
+### 2. Get All Events (with Filtering)
+
+- **Endpoint:** GET /api/events?category=sports
+- **Request Body:** None
+- **Response (200 OK):**
+[
+  {
+    "_id": "6ac6420cabc71c95aa228c10",
+    "title": "Autumn Football Cup",
+    "description": "Annual soccer tournament",
+    "date": "2026-11-15T14:00:00.000Z",
+    "location": "North Stadium",
+    "capacity": 100,
+    "category": "sports",
+    "isFree": true,
+    "price": 0,
+    "createdAt": "2026-10-07T12:58:52.436Z",
+    "updatedAt": "2026-10-07T12:58:52.436Z",
+    "__v": 0
+  }
+]
+
+---
+
+### 3. Get Upcoming Events
+- **Function:** Retrieves only events scheduled after the current date, sorted chronologically with the soonest upcoming event first.
+- **Endpoint:** GET /api/events/upcoming
+- **Request Body:** None
+- **Response (200 OK):**
+[
+  {
+    "_id": "6ac6420cabc71c95aa228c10",
+    "title": "Autumn Football Cup",
+    "description": "Annual soccer tournament",
+    "date": "2026-11-15T14:00:00.000Z",
+    "location": "North Stadium",
+    "capacity": 100,
+    "category": "sports",
+    "isFree": true,
+    "price": 0,
+    "createdAt": "2026-10-07T12:58:52.436Z",
+    "updatedAt": "2026-10-07T12:58:52.436Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac63f68abc71c95aa228c09",
+    "title": "Campus Hackathon 2026",
+    "description": "Annual student hackathon",
+    "date": "2026-11-20T10:00:00.000Z",
+    "location": "Engineering Lab 3",
+    "capacity": 50,
+    "category": "academic",
+    "isFree": true,
+    "price": 0,
+    "createdAt": "2026-10-07T12:47:36.534Z",
+    "updatedAt": "2026-10-07T12:47:36.534Z",
+    "__v": 0
+  }
+]
+
+---
+
+### 4. Get Event By ID
+- **Function:** Retrieves a single event matching the given MongoDB ID parameter.
+- **Endpoint:** GET /api/events/6ac63f9fabc71c95aa228c0d
+- **Request Body:** None
+- **Response (200 OK):**
+{
+  "_id": "6ac63f9fabc71c95aa228c0d",
+  "title": "Campus Hackathon 2026",
+  "description": "Annual student hackathon",
+  "date": "2026-11-20T10:00:00.000Z",
+  "location": "Engineering Lab 3",
+  "capacity": 50,
+  "category": "academic",
+  "isFree": true,
+  "price": 0,
+  "createdAt": "2026-10-07T12:48:31.422Z",
+  "updatedAt": "2026-10-07T12:48:31.422Z",
+  "__v": 0
+}
+
+---
+
+### 5. Update an Event
+- **Function:** Updates specified fields of an existing event while running schema validations and returning the updated document.
+- **Endpoint:** PUT /api/events/6ac63f9fabc71c95aa228c0d
+- **Request Body:**
+{
+  "capacity": 80,
+  "location": "Auditorium A"
+}
+- **Response (200 OK):**
+{
+  "_id": "6ac63f9fabc71c95aa228c0d",
+  "title": "Campus Hackathon 2026",
+  "description": "Annual student hackathon",
+  "date": "2026-11-20T10:00:00.000Z",
+  "location": "Auditorium A",
+  "capacity": 80,
+  "category": "academic",
+  "isFree": true,
+  "price": 0,
+  "createdAt": "2026-10-07T12:48:31.422Z",
+  "updatedAt": "2026-10-07T12:53:40.390Z",
+  "__v": 0
+}
+
+---
+
+### 6. Delete an Event
+- **Function:** Permanently deletes an event document by its ID and returns a confirmation message.
+- **Endpoint:** DELETE /api/events/6ac63f9fabc71c95aa228c0d
+- **Request Body:** None
+- **Response (200 OK):**
+{
+  "message": "Event deleted successfully"
+}*/
