@@ -185,6 +185,7 @@ But you remain responsible for all of the code you submit. You must be able to e
 1. getEvents
 
 Input: `GET http://localhost:3000/api/events/`
+
 Output: `200 OK`
 ```
 [
@@ -220,7 +221,9 @@ Output: `200 OK`
 ```
 
 2. getUpcomingEvents
+   
 Input: `GET http://localhost:3000/api/events/upcoming`
+
 Output: `200 OK`
 ```
 [
@@ -242,7 +245,9 @@ Output: `200 OK`
 ```
 
 3. getEventById
+   
 Input: `GET http://localhost:3000/api/events/6ac62ff0033f14f9e7176ada`
+
 Output: `200 OK`
 
 ```
@@ -263,6 +268,7 @@ Output: `200 OK`
 ```
 
 4. createEvent
+   
 Input: `POST http://localhost:3000/api/events`
 ```
 {
@@ -295,6 +301,7 @@ Output: `201 Created`
 ```
 
 5. updateEvent
+   
 Input: `PUT http://localhost:3000/api/events/6ac6349a04845957aa7936cc`
 ```
 {
@@ -321,6 +328,7 @@ Output: `200 OK`
 ```
 
 6. deleteEvent
+
 Input: `DELETE http://localhost:3000/api/events/6ac6349a04845957aa7936cc`
 ```
 http://localhost:3000/api/events/6ac6349a04845957aa7936cc
