@@ -4,7 +4,9 @@ const Product = require('./models/product.model.js');
 const productRoutes = require('./routes/product.route.js');
 const Event = require('./models/event.model.js');
 const eventRoutes = require('./routes/event.route.js');
+const dns = require('node:dns/promises');
 
+dns.setServers(["1.1.1.1", "1.0.0.1"]);
 
 const app = express()
 
