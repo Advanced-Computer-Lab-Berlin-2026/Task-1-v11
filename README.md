@@ -177,3 +177,123 @@ Do not edit the Product files. Pull requests that change them will be sent back.
 You're expected to use AI tools while building this. That's fine and expected.
 
 But you remain responsible for all of the code you submit. You must be able to explain, for **any line in your controller**, why it's there and what happens if you delete it. We will ask.
+
+
+
+## API Examples
+
+Base URL: `http://localhost:3000`
+
+### Create an event
+`POST /api/events`
+
+Request:
+```json
+{
+  "title": "Campus Sports Day",
+  "date": "2026-12-20T10:00:00Z",
+  "location": "Hall B",
+  "capacity": 50,
+  "category": "sports",
+  "isFree": true,
+  "price": 0
+}
+```
+
+Response (201):
+```json
+{
+  "_id": "507f1f77bcf86cd799439011",
+  "title": "Campus Sports Day",
+  "date": "2026-12-20T10:00:00.000Z",
+  "location": "Hall B",
+  "capacity": 50,
+  "category": "sports",
+  "isFree": true,
+  "price": 0
+}
+```
+
+### Get all events
+`GET /api/events`
+
+Response (200):
+```json
+[
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "title": "Campus Sports Day",
+    "capacity": 50
+  }
+]
+```
+
+### Get one event
+`GET /api/events/507f1f77bcf86cd799439011`
+
+Response (200):
+```json
+{
+  "_id": "507f1f77bcf86cd799439011",
+  "title": "Campus Sports Day",
+  "capacity": 50
+}
+```
+
+### Update an event
+`PUT /api/events/507f1f77bcf86cd799439011`
+
+Request:
+```json
+{
+  "capacity": 75
+}
+```
+
+Response (200):
+```json
+{
+  "_id": "507f1f77bcf86cd799439011",
+  "title": "Campus Sports Day",
+  "capacity": 75
+}
+```
+
+### Delete an event
+`DELETE /api/events/507f1f77bcf86cd799439011`
+
+Response (200):
+```json
+{
+  "message": "Event deleted successfully"
+}
+```
+
+### Filter events
+`GET /api/events?category=sports&isFree=true`
+
+Response (200):
+```json
+[
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "title": "Campus Sports Day",
+    "category": "sports",
+    "isFree": true
+  }
+]
+```
+
+### Get upcoming events
+`GET /api/events/upcoming`
+
+Response (200):
+```json
+[
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "title": "Campus Sports Day",
+    "date": "2026-12-20T10:00:00.000Z"
+  }
+]
+```
